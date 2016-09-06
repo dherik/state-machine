@@ -25,7 +25,7 @@ public class StateMachine {
                 return transition.to();
             }
         }
-        return null;
+        return current;
     }
 
     public State getCurrent() {
