@@ -11,7 +11,7 @@ Just:
 
 The repository have two tests:
 
- - The **StateMachineTest** has the example from Stak OverFlow.
+ - The **StateMachineTest** has the example from Stack OverFlow.
 
  - The **StateMachineAccountTest** is a state machine using the same mechanism, but using an entreprise example for an Account state machine. 
 
