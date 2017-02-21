@@ -4,10 +4,9 @@ import io.github.dherik.Condition;
 import io.github.dherik.State;
 import io.github.dherik.StateMachine;
 import io.github.dherik.Transition;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+
+import java.util.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -32,19 +31,19 @@ public class StateMachineAccountTest {
 
         List<Transition> transitions = new ArrayList<>();
         transitions.add(new Transition(new_, new HashSet<>(Arrays.asList(isVerified, isUniqueId)), active));
-        transitions.add(new Transition(new_, new HashSet<>(Arrays.asList(isAccountDormant)), suspended));
-        transitions.add(new Transition(new_, new HashSet<>(Arrays.asList(isCancelRequested)), closed));
+        transitions.add(new Transition(new_, new HashSet<>(Collections.singletonList(isAccountDormant)), suspended));
+        transitions.add(new Transition(new_, new HashSet<>(Collections.singletonList(isCancelRequested)), closed));
 
-        transitions.add(new Transition(active, new HashSet<>(Arrays.asList(isSuspendedRequested)), suspended));
-        transitions.add(new Transition(active, new HashSet<>(Arrays.asList(isPasswordAlert)), suspended));
-        transitions.add(new Transition(active, new HashSet<>(Arrays.asList(isAccountDormant)), suspended));
-        transitions.add(new Transition(active, new HashSet<>(Arrays.asList(isPolicyViolated)), closed));
-        transitions.add(new Transition(active, new HashSet<>(Arrays.asList(isCancelRequested)), closed));
+        transitions.add(new Transition(active, new HashSet<>(Collections.singletonList(isSuspendedRequested)), suspended));
+        transitions.add(new Transition(active, new HashSet<>(Collections.singletonList(isPasswordAlert)), suspended));
+        transitions.add(new Transition(active, new HashSet<>(Collections.singletonList(isAccountDormant)), suspended));
+        transitions.add(new Transition(active, new HashSet<>(Collections.singletonList(isPolicyViolated)), closed));
+        transitions.add(new Transition(active, new HashSet<>(Collections.singletonList(isCancelRequested)), closed));
 
-        transitions.add(new Transition(suspended, new HashSet<>(Arrays.asList(isResumeRequested)), active));
-        transitions.add(new Transition(suspended, new HashSet<>(Arrays.asList(isLockExpired)), active));
-        transitions.add(new Transition(suspended, new HashSet<>(Arrays.asList(isCancelRequested)), closed));
-        transitions.add(new Transition(suspended, new HashSet<>(Arrays.asList(isPolicyViolated)), closed));
+        transitions.add(new Transition(suspended, new HashSet<>(Collections.singletonList(isResumeRequested)), active));
+        transitions.add(new Transition(suspended, new HashSet<>(Collections.singletonList(isLockExpired)), active));
+        transitions.add(new Transition(suspended, new HashSet<>(Collections.singletonList(isCancelRequested)), closed));
+        transitions.add(new Transition(suspended, new HashSet<>(Collections.singletonList(isPolicyViolated)), closed));
 
         StateMachine machine = new StateMachine(new_, transitions);
 
@@ -55,11 +54,11 @@ public class StateMachineAccountTest {
         machine = new StateMachine(new_, transitions);
 
         Assert.assertEquals("New", machine.getCurrent().getState());
-        machine.apply(new HashSet<>(Arrays.asList(isVerified)));
+        machine.apply(new HashSet<>(Collections.singletonList(isVerified)));
         Assert.assertEquals("New", machine.getCurrent().getState());
 
         Assert.assertEquals("New", machine.getCurrent().getState());
-        machine.apply(new HashSet<>(Arrays.asList(isAccountDormant)));
+        machine.apply(new HashSet<>(Collections.singletonList(isAccountDormant)));
         Assert.assertEquals("Suspended", machine.getCurrent().getState());
 
     }

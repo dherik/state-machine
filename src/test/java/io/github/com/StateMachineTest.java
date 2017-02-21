@@ -4,10 +4,9 @@ import io.github.dherik.Condition;
 import io.github.dherik.State;
 import io.github.dherik.StateMachine;
 import io.github.dherik.Transition;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
+
+import java.util.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -25,9 +24,9 @@ public class StateMachineTest {
         Condition notRaining = new Condition("Not Raining");
 
         List<Transition> transitions = new ArrayList<>();
-        transitions.add(new Transition(one, new HashSet<>(Arrays.asList(sunday)), three));
-        transitions.add(new Transition(one, new HashSet<>(Arrays.asList(sunday)), two));
-        transitions.add(new Transition(one, new HashSet<>(Arrays.asList(raining)), three));
+        transitions.add(new Transition(one, new HashSet<>(Collections.singletonList(sunday)), three));
+        transitions.add(new Transition(one, new HashSet<>(Collections.singletonList(sunday)), two));
+        transitions.add(new Transition(one, new HashSet<>(Collections.singletonList(raining)), three));
         transitions.add(new Transition(one, new HashSet<>(Arrays.asList(sunday, raining)), three));
         transitions.add(new Transition(one, new HashSet<>(Arrays.asList(notSunday, notRaining)), three));
 

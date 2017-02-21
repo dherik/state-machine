@@ -13,19 +13,17 @@ public class Transition {
         this.conditions = conditions;
         this.to = to;
     }
-    
-    public State to() {
+
+    State to() {
         return to;
     }
 
-    public Set<Condition> getConditions() {
+    Set<Condition> getConditions() {
         return conditions;
     }
 
-    public State from() {
+    State from() {
         return from;
     }
-    
-    
 
 }

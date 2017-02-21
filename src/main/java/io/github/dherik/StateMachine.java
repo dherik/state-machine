@@ -17,7 +17,7 @@ public class StateMachine {
         current = getNextState(conditions);
     }
 
-    State getNextState(Set<Condition> conditions) {
+    private State getNextState(Set<Condition> conditions) {
         for (Transition transition : transitions) {
             boolean currentStateMatches = transition.from().equals(current);
             boolean conditionsMatch = transition.getConditions().equals(conditions);
