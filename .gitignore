@@ -2,7 +2,4 @@
 build/
 /.nb-gradle/
 .idea/
-gradle/
-gradlew
-gradlew.bat
 
