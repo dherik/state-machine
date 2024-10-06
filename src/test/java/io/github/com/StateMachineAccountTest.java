@@ -4,11 +4,11 @@ import io.github.dherik.Condition;
 import io.github.dherik.State;
 import io.github.dherik.StateMachine;
 import io.github.dherik.Transition;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StateMachineAccountTest {
 
@@ -47,19 +47,19 @@ public class StateMachineAccountTest {
 
         StateMachine machine = new StateMachine(new_, transitions);
 
-        Assert.assertEquals("New", machine.getCurrent().getState());
+        assertEquals("New", machine.getCurrent().state());
         machine.apply(new HashSet<>(Arrays.asList(isVerified, isUniqueId)));
-        Assert.assertEquals("Active", machine.getCurrent().getState());
+        assertEquals("Active", machine.getCurrent().state());
 
         machine = new StateMachine(new_, transitions);
 
-        Assert.assertEquals("New", machine.getCurrent().getState());
+        assertEquals("New", machine.getCurrent().state());
         machine.apply(new HashSet<>(Collections.singletonList(isVerified)));
-        Assert.assertEquals("New", machine.getCurrent().getState());
+        assertEquals("New", machine.getCurrent().state());
 
-        Assert.assertEquals("New", machine.getCurrent().getState());
+        assertEquals("New", machine.getCurrent().state());
         machine.apply(new HashSet<>(Collections.singletonList(isAccountDormant)));
-        Assert.assertEquals("Suspended", machine.getCurrent().getState());
+        assertEquals("Suspended", machine.getCurrent().state());
 
     }
 }

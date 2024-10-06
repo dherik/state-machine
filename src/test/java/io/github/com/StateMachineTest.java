@@ -4,11 +4,11 @@ import io.github.dherik.Condition;
 import io.github.dherik.State;
 import io.github.dherik.StateMachine;
 import io.github.dherik.Transition;
+import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
-import org.junit.Assert;
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StateMachineTest {
 
@@ -32,11 +32,11 @@ public class StateMachineTest {
 
         StateMachine machine = new StateMachine(one, transitions);
         
-        Assert.assertEquals("one", machine.getCurrent().getState());
+        assertEquals("one", machine.getCurrent().state());
         
         machine.apply(new HashSet<>(Arrays.asList(sunday, raining)));
         
-        Assert.assertEquals("three", machine.getCurrent().getState());
+        assertEquals("three", machine.getCurrent().state());
     }
 
 }

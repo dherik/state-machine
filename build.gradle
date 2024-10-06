@@ -1,9 +1,16 @@
-apply plugin: 'java'
-
-dependencies {
-    testCompile 'junit:junit:4.12'
+plugins {
+    id 'application'
 }
 
 repositories {
-    jcenter()
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
 }
